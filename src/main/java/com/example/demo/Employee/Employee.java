@@ -1,18 +1,22 @@
 package com.example.demo.Employee;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.Period;
+
 @Entity
 @Table
-
+@AllArgsConstructor
 public class Employee {
     @Id
     @SequenceGenerator(
             name = "student_sequence",
             sequenceName="student_sequence",
-            allocationSize = 1
+            allocationSize = 10
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
@@ -22,6 +26,7 @@ public class Employee {
     private String name;
     private String email;
     private LocalDate dob;
+    @Transient
     private int age;
 
     public Employee() {
@@ -30,23 +35,23 @@ public class Employee {
      public  Employee(Long id,
                     String name,
                     String email,
-                    LocalDate dob,
-                    int age) {
+                    LocalDate dob)
+                     {
         this.id = id;
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
+
     }
 
     public Employee(String name,
                     String email,
-                    LocalDate dob,
-                    int age) {
+                    LocalDate dob)
+                    {
         this.name = name;
         this.email = email;
         this.dob = dob;
-        this.age = age;
+
     }
 
     public Long getId() {
@@ -82,7 +87,8 @@ public class Employee {
     }
 
     public int getAge() {
-        return age;
+
+        return Period.between(this.dob , LocalDate.now()).getYears();
     }
 
     public void setAge(int age) {

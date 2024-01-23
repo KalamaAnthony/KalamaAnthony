@@ -12,11 +12,10 @@ public class EmployeeConfig {
     @Bean
     CommandLineRunner commandLineRunner(EmployeeRepository repository){
         return args -> {
-            Employee Kalama=new Employee(
+            Employee Kalama =new Employee(
                     "Kalama",
                     "tonnykalama9@gmail.com",
-                    LocalDate.of(1997, 6, 23),
-                    26
+                    LocalDate.of(1997, 6, 23)
 
 
             );
@@ -24,20 +23,16 @@ public class EmployeeConfig {
             Employee Baraka=new Employee(
                     "Baraka",
                     "barakakalama9@gmail.com",
-                    LocalDate.of(2004, 6, 23),
-                    19
-
+                    LocalDate.of(2004, 6, 23)
 
             );
 
             Employee Anthony=new Employee(
                     "Anthony",
                     "chumakalama9@gmail.com",
-                    LocalDate.of(2000, 6, 23),
-                    23
+                    LocalDate.of(2000, 6, 23)
 
-
-            );
+                                );
             repository.saveAll(
              List.of(Kalama, Baraka, Anthony)
              );
